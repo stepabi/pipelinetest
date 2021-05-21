@@ -1,13 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                sh 'echo "Hello World"'
+                sh 'echo "It is working"'
                 sh '''
-                    echo "Multiline shell steps works too"
+                    echo "List local file"
                     ls -lah
                 '''
+            }
+        }
+        stage('Build'){
+            steps{
+                sh 'docker build -f Dockerfile -t testing .'
             }
         }
     }
